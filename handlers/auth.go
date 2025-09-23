@@ -5,19 +5,21 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/Iagobarros211256/voluryashop/repositories"
 	"github.com/Iagobarros211256/voluryashop/services"
 	"github.com/golang-jwt/jwt/v5"
 )
 
-// creating  auth handler
+// creating  auth handler and its constructor
 type AuthHandler struct {
-	Secret      string
-	AuthService *services.AuthService
-	// implement later an userRepo (to search for users on database)
+	Secret             string
+	AuthService        *services.AuthService
+	CallUserRepository *repositories.UserRepository
 }
 
-func NewAuthHandler(secret string, authService *services.AuthService) *AuthHandler {
-	return &AuthHandler{Secret: secret, AuthService: authService}
+func NewAuthHandler(secret string, authService *services.AuthService, calluserepository *repositories.UserRepository) *AuthHandler {
+	return &AuthHandler{Secret: secret, AuthService: authService, CallUserRepository: calluserepository}
+
 }
 
 func (h *AuthHandler) Register(w http.ResponseWriter, r *http.Request) {

@@ -10,7 +10,7 @@ type UserRepository struct {
 }
 
 func NewUserRepository(db *sql.DB) *UserRepository {
-	return &UserRepository{db: db}
+	return &UserRepository{DB: db}
 }
 
 func (r *UserRepository) GetAll(ctx context.Context) ([]models.User, error) {
@@ -30,3 +30,5 @@ func (r *UserRepository) GetAll(ctx context.Context) ([]models.User, error) {
 	}
 	return users, nil
 }
+
+func CreateUser(email string, hasedPassword string) error
