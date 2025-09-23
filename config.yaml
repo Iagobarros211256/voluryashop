@@ -1,0 +1,11 @@
+SERVER_PORT: "3000"
+SERVER_DEBUG: true
+
+DATABASE_URL: "postgres://user:pass@localhost:5432/ecommerce"
+
+PAYMENT_STRIPE_KEY: "sk_test_123456"
+
+EMAIL_SMTPHOST: "smtp.mailtrap.io"
+EMAIL_SMTPPORT: 587
+EMAIL_USERNAME: "user"
+EMAIL_PASSWORD: "pass"
