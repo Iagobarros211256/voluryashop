@@ -4,6 +4,7 @@ import (
 	"log"
 
 	"github.com/Iagobarros211256/voluryashop/repository"
+	"github.com/Iagobarros211256/voluryashop/routes"
 	"github.com/go-delve/delve/pkg/config"
 )
 
