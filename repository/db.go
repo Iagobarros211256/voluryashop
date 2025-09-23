@@ -10,7 +10,7 @@ import (
 	"gorm.io/gorm"
 )
 
-var DDB *gorm.DB
+var DB *gorm.DB
 
 func ConnDB() {
 	dsn := fmt.Sprintf(

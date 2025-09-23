@@ -1,8 +1,6 @@
-package rotes
+package routes
 
 import (
-	"os/user"
-
 	"github.com/Iagobarros211256/voluryashop/handlers"
 	"github.com/gin-gonic/gin"
 )
@@ -12,7 +10,7 @@ func SetupRouter() *gin.Engine {
 	userGroup := r.Group("/users")
 	{
 		userGroup.GET("/", handlers.GetUsers)
-		user.Group.POST("/", handlers.CreateUser)
+		userGroup.POST("/", handlers.CreateUser)
 	}
 
 	return r
