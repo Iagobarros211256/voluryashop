@@ -9,7 +9,7 @@ import (
 
 func SetupRouter() *gin.Engine {
 	r := gin.Default()
-	usergroup := r.Group("/users")
+	userGroup := r.Group("/users")
 	{
 		userGroup.GET("/", handlers.GetUsers)
 		user.Group.POST("/", handlers.CreateUser)

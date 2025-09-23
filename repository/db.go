@@ -6,6 +6,8 @@ import (
 
 	"github.com/Iagobarros211256/voluryashop/configs"
 	"github.com/Iagobarros211256/voluryashop/models"
+	"gorm.io/driver/postgres"
+	"gorm.io/gorm"
 )
 
 var DDB *gorm.DB
