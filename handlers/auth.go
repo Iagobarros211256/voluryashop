@@ -5,15 +5,15 @@ import (
 	"net/http"
 	"time"
 
-	"myapp/services"
-
+	"github.com/Iagobarros211256/voluryashop/services"
 	"github.com/golang-jwt/jwt/v5"
 )
 
+// creating  auth handler
 type AuthHandler struct {
 	Secret      string
 	AuthService *services.AuthService
-	// aqui poderia ter tbm userRepo (para buscar usuários no banco)
+	// implement later an userRepo (to search for users on database)
 }
 
 func NewAuthHandler(secret string, authService *services.AuthService) *AuthHandler {
@@ -37,13 +37,8 @@ func (h *AuthHandler) Register(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// aqui salvaria no banco: payload.Email + hashed
-	// mas por simplicidade vamos só devolver
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(map[string]string{
-		"email":    payload.Email,
-		"password": hashed, // só para teste, em prod não devolve hash
-	})
+	// ⚠️ save in database: payload.Email + hashed
+
 }
 
 func (h *AuthHandler) Login(w http.ResponseWriter, r *http.Request) {
@@ -57,15 +52,9 @@ func (h *AuthHandler) Login(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// ⚠️ Simulação → em prod, busca o hash no banco
-	savedHash, _ := h.AuthService.HashPassword("123456")
+	// ⚠️ searchs for hash on database
 
-	if !h.AuthService.CheckPasswordHash(payload.Password, savedHash) {
-		http.Error(w, "invalid credentials", http.StatusUnauthorized)
-		return
-	}
-
-	// cria JWT
+	// creates JWT
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
 		"email": payload.Email,
 		"exp":   time.Now().Add(time.Hour).Unix(),
